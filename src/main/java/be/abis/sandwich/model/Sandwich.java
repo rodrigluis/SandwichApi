@@ -1,23 +1,24 @@
 package be.abis.sandwich.model;
 
-import org.springframework.lang.NonNull;
+import jakarta.persistence.*;
 
+import java.util.Objects;
+
+@Entity
+@Table(name = "sandwiches")
 public class Sandwich {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "ID")
     private int id;
-
-    @NonNull
+    @Column(name = "NAME")
     private String name;
-
-    @NonNull
+    @Column(name = "DESCRIPTION")
     private String description;
-
-    @NonNull
+    @Column(name = "CATEGORY")
     private String category;
-
+    @Column(name = "BASEPRICE")
     private double basePrice;
-    private boolean salad;
-    private boolean breadType;
 
     public Sandwich(){}
 
