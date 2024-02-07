@@ -1,22 +1,29 @@
 package be.abis.sandwich.model;
 
-import java.util.Objects;
+import org.springframework.lang.NonNull;
 
 public class Sandwich {
 
     private int id;
+
+    @NonNull
     private String name;
+
+    @NonNull
     private String description;
+
+    @NonNull
     private String category;
+
     private double basePrice;
 
     public Sandwich(){}
 
     public Sandwich(int id, String name, String description, String category) {
-        this.id=id;
-        this.name = name;
+        this.id          = id;
+        this.name        = name;
         this.description = description;
-        this.category = category;
+        this.category    = category;
     }
 
     public Sandwich(int id,String name, String description, String category, double basePrice) {
