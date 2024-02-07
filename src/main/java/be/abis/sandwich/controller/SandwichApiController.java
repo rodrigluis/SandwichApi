@@ -37,29 +37,21 @@ public class SandwichApiController {
 
     @GetMapping
     public List<Sandwich> getAllSandwiches() {
-        List<Sandwich> sandwiches = new ArrayList<>();
-
-        return sandwiches;
+        return sandwichService.findAllSandwiches();
     }
 
     @GetMapping(path = "{id}")
     public Sandwich getSandwichById(@PathVariable("id") int id) {
-        Sandwich sandwich = new Sandwich();
-
-        return sandwich;
+        return sandwichService.findSandwichById(id);
     }
 
     @GetMapping
     public Sandwich getSandwichByName(@RequestParam("name") String name) {
-        Sandwich sandwich = new Sandwich();
-
-        return sandwich;
+        return sandwichService.findSandwichByName(name);
     }
 
     @GetMapping
     public List<Sandwich> getAllSandwichesByCategory(@RequestParam("category") String category) {
-        List<Sandwich> sandwiches = new ArrayList<>();
-
-        return sandwiches;
+        return sandwichService.findSandwichesByCategory(category);
     }
 }
