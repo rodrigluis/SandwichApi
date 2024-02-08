@@ -18,54 +18,49 @@ public class JdbcSandwichRepository implements SandwichRepository {
     public List<Sandwich> findAllSandwiches() {
         List<Sandwich> sandwiches = new ArrayList<>();
         sandwichRepository.findAll().forEach(sandwiches::add);
-        if (sandwiches.size() <= 0) {
-            throw new ApiException(ApiException.Type.NO_SANDWICH);
-        }
         return sandwiches;
     }
 
     @Override
     public Sandwich findSandwichById(int id) {
-        Optional<Sandwich> sandwich = sandwichRepository.findById(Integer.valueOf(id));
-        if (! sandwich.isPresent()) {
-            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
-        }
-        return sandwich.get();
+        Optional<Sandwich> sandwich = sandwichRepository.findById(id);
+        return sandwich.isPresent() ? sandwich.get() : null;
     }
 
     @Override
     public Sandwich findSandwichByName(String name) {
-        Sandwich sandwich = sandwichRepository.findSandwichByName(name);
-        if (sandwich == null) {
-            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
-        }
-        return sandwich;
+        return sandwichRepository.findSandwichByName(name);
     }
 
     @Override
     public List<Sandwich> findSandwichesByCategory(String category) {
-        List<Sandwich> sandwiches = sandwichRepository.findSandwichesByCategory(category);
-        if (sandwiches.size() <= 0) {
-            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
-        }
-        return sandwiches;
+        return sandwichRepository.findSandwichesByCategory(category);
     }
 
     @Override
     public void addSandwich(Sandwich sandwich) {
-        // Check to see whether thesandwich already exists
+        // Check to see whether the sandwich already exists
+        if (findSandwichByName(sandwich.getName()) != null) {
+            throw new ApiException(ApiException.Type.ALREADY_EXISTS);
+        }
         sandwichRepository.save(sandwich);
     }
 
     @Override
     public void updatePrice(Sandwich sandwich) {
-        // Check to see whether thesandwich already exists
+        // Check to see whether the sandwich already exists
+        if (findSandwichByName(sandwich.getName()) == null) {
+            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
+        }
         sandwichRepository.save(sandwich);
     }
 
     @Override
     public void deleteSandwich(int id) {
-        // Check to see whether thesandwich already exists
-        sandwichRepository.deleteById(Integer.valueOf(id));
+        // Check to see whether the sandwich already exists
+        if (findSandwichById(id) == null) {
+            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
+        }
+        sandwichRepository.deleteById(id);
     }
 }
