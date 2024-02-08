@@ -24,6 +24,7 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public Sandwich findSandwichById(int id) {
+        System.out.println("[API][Repository] FINDSANDWICHESBYID [" + id + "]");
         Optional<Sandwich> sandwich = sandwichRepository.findById(id);
         return sandwich.isPresent() ? sandwich.get() : null;
     }
@@ -36,11 +37,13 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public List<Sandwich> findSandwichesByCategory(String category) {
+        System.out.println("[API][Repository] FINDSANDWICHESBYCATEGORY [" + category + "]");
         return sandwichRepository.findSandwichesByCategory(category);
     }
 
     @Override
     public void addSandwich(Sandwich sandwich) {
+        System.out.println("[API][Repository] ADDSANDWICH");
         // Check to see whether the sandwich already exists
         if (findSandwichByName(sandwich.getName()) != null) {
             throw new ApiException(ApiException.Type.ALREADY_EXISTS);
@@ -50,6 +53,7 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public void updatePrice(Sandwich sandwich) {
+        System.out.println("[API][Repository] UPDATEPRICE [" + sandwich.toString() + "]");
         // Check to see whether the sandwich already exists
         if (findSandwichByName(sandwich.getName()) == null) {
             throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
@@ -59,6 +63,7 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public void deleteSandwich(int id) {
+        System.out.println("[API][Repository] DELETESANDWICH [" + id + "]");
         // Check to see whether the sandwich already exists
         if (findSandwichById(id) == null) {
             throw new ApiException(ApiException.Type.DOES_NOT_EXIST);

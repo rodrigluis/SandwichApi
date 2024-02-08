@@ -2,8 +2,6 @@ package be.abis.sandwich.model;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "sandwiches")
 public class Sandwich {
@@ -38,6 +36,10 @@ public class Sandwich {
     public Sandwich(int id, String name, String description, String category, double basePrice, boolean salad, boolean breadType) {
         this(id,name, description, category, salad, breadType);
         this.basePrice = basePrice;
+    }
+
+    public String toString() {
+        return this.name + " - " + this.category + " - " + this.description + " - " + this.basePrice;
     }
 
     public int getId() {

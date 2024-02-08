@@ -61,7 +61,7 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public void updatePrice(Sandwich sandwich) {
-        System.out.println("[API][Service] UPDATEPRICE");
+        System.out.println("[API][Service] UPDATEPRICE [" + sandwich.toString() + "]");
         sandwichRepository.updatePrice(sandwich);
     }
 
