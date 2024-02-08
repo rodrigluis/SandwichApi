@@ -16,6 +16,7 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public List<Sandwich> findAllSandwiches() {
+        System.out.println("[Repository] FINDALLSANDWICHES");
         List<Sandwich> sandwiches = new ArrayList<>();
         sandwichRepository.findAll().forEach(sandwiches::add);
         return sandwiches;
@@ -29,6 +30,7 @@ public class JdbcSandwichRepository implements SandwichRepository {
 
     @Override
     public Sandwich findSandwichByName(String name) {
+        System.out.println("[API][Repository] FINDSANDWICHBYNAME [" + name + "]");
         return sandwichRepository.findSandwichByName(name);
     }
 

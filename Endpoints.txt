@@ -3,10 +3,23 @@ SANDWICHAPI
 
  METHOD	|				URI							|		REQUEST BODY	|		RESPONSE BODY	|	ROLE	|			DESCRIPTION						|
 --------+-------------------------------------------+-----------------------+-----------------------+-----------+-------------------------------------------+
-POST  	| <host>:8080/api/sandwich					| Sandwich				| ---					| Admin		| Add a sandwich							|
-PATCH	| <host>:8080/api/sandwich					| Sandwich				| ---					| Admin		| Update a sandwich's price					|
-DELETE	| <host>:8080/api/sandwich/{id}				| ---					| ---					| Admin		| Remove a sandwich							|
+POST  	| <host>:8080/api/mgmt/sandwich				| Sandwich				| ---					| Admin		| Add a sandwich							|
+PATCH	| <host>:8080/api/mgmt/sandwich				| Sandwich				| ---					| Admin		| Update a sandwich's price					|
+DELETE	| <host>:8080/api/mgmt/sandwich/{id}		| ---					| ---					| Admin		| Remove a sandwich							|
 GET		| <host>:8080/api/sandwiches/all			| ---					| List<Sandwich>		| Everyone	| Get the list of sandwiches				|
 GET		| <host>:8080/api/sandwich/{id}				| ---					| Sandwich				| Everyone	| Get the sandwich identied by its ID		|
 GET		| <host>:8080/api/sandwich?name=...			| ---					| Sandwich				| Everyone	| Get the sandwich identied by its name		|
 GET		| <host>:8080/api/sandwiches?category=...	| ---					| List<Sandwich>		| Everyone	| Get the sandwiches identied by its category
+
+SANDWICHFRONT
+=============
+
+ METHOD	|				URI							|		REQUEST BODY	|		RESPONSE BODY	|	ROLE	|			DESCRIPTION						|
+--------+-------------------------------------------+-----------------------+-----------------------+-----------+-------------------------------------------+
+POST  	| <host>:8088/mgmt/sandwich					| Sandwich				| ---					| Admin		| Add a sandwich							|
+PATCH	| <host>:8088/mgmt/sandwich					| Sandwich				| ---					| Admin		| Update a sandwich's price					|
+DELETE	| <host>:8088/mgmt/sandwich/{id}			| ---					| ---					| Admin		| Remove a sandwich							|
+GET		| <host>:8088/sandwiches/all				| ---					| List<Sandwich>		| Everyone	| Get the list of sandwiches				|
+GET		| <host>:8088/sandwich/{id}					| ---					| Sandwich				| Everyone	| Get the sandwich identied by its ID		|
+GET		| <host>:8088/sandwich?name=...				| ---					| Sandwich				| Everyone	| Get the sandwich identied by its name		|
+GET		| <host>:8088/sandwiches?category=...		| ---					| List<Sandwich>		| Everyone	| Get the sandwiches identied by its category

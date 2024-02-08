@@ -19,7 +19,9 @@ public class Sandwich {
     private String category;
     @Column(name = "BASEPRICE")
     private double basePrice;
+    @Column(name = "SALAD_ALLOWED")
     private boolean salad;
+    @Column(name = "BREAD_TYPE_ALLOWED")
     private boolean breadType;
 
     public Sandwich(){}

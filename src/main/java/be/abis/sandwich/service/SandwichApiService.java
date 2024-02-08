@@ -15,6 +15,7 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public List<Sandwich> findAllSandwiches() {
+        System.out.println("[API][Service] FINDALLSANDWICHES");
         List<Sandwich> sandwiches = sandwichRepository.findAllSandwiches();
         if (sandwiches.size() <= 0) {
             throw new ApiException(ApiException.Type.NO_SANDWICH);
@@ -24,6 +25,7 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public Sandwich findSandwichById(int id) {
+        System.out.println("[API][Service] FINDSANDWICHBYID [" + id + "]");
         Sandwich sandwich = sandwichRepository.findSandwichById(id);
         if (sandwich == null) {
             throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
@@ -33,6 +35,7 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public Sandwich findSandwichByName(String name) {
+        System.out.println("[API][Service] FINDSANDWICHBYNAME [" + name + "]");
         Sandwich sandwich = sandwichRepository.findSandwichByName(name);
         if (sandwich == null) {
             throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
@@ -42,6 +45,7 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public List<Sandwich> findSandwichesByCategory(String category) {
+        System.out.println("[API][Service] FINDSANDWICHESBYCATEGORY [" + category + "]");
         List<Sandwich> sandwiches = sandwichRepository.findSandwichesByCategory(category);
         if (sandwiches.size() <= 0) {
             throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
@@ -51,16 +55,19 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public void addSandwich(Sandwich sandwich) {
+        System.out.println("[API][Service] ADDSANDWICH");
         sandwichRepository.addSandwich(sandwich);
     }
 
     @Override
     public void updatePrice(Sandwich sandwich) {
+        System.out.println("[API][Service] UPDATEPRICE");
         sandwichRepository.updatePrice(sandwich);
     }
 
     @Override
     public void deleteSandwich(int id) {
+        System.out.println("[API][Service] DELETESANDWICH");
         sandwichRepository.deleteSandwich(id);
     }
 }
