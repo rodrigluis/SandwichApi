@@ -1,5 +1,6 @@
 package be.abis.sandwich.service;
 
+import be.abis.sandwich.exception.ApiException;
 import be.abis.sandwich.model.Sandwich;
 import be.abis.sandwich.repository.SandwichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,38 @@ public class SandwichApiService implements SandwichService {
 
     @Override
     public List<Sandwich> findAllSandwiches() {
-        return sandwichRepository.findAllSandwiches();
+        List<Sandwich> sandwiches = sandwichRepository.findAllSandwiches();
+        if (sandwiches.size() <= 0) {
+            throw new ApiException(ApiException.Type.NO_SANDWICH);
+        }
+        return sandwiches;
     }
 
     @Override
     public Sandwich findSandwichById(int id) {
-        return sandwichRepository.findSandwichById(id);
+        Sandwich sandwich = sandwichRepository.findSandwichById(id);
+        if (sandwich == null) {
+            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
+        }
+        return sandwich;
     }
 
     @Override
     public Sandwich findSandwichByName(String name) {
-        return sandwichRepository.findSandwichByName(name);
+        Sandwich sandwich = sandwichRepository.findSandwichByName(name);
+        if (sandwich == null) {
+            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
+        }
+        return sandwich;
     }
 
     @Override
     public List<Sandwich> findSandwichesByCategory(String category) {
-        return sandwichRepository.findSandwichesByCategory(category);
+        List<Sandwich> sandwiches = sandwichRepository.findSandwichesByCategory(category);
+        if (sandwiches.size() <= 0) {
+            throw new ApiException(ApiException.Type.DOES_NOT_EXIST);
+        }
+        return sandwiches;
     }
 
     @Override
