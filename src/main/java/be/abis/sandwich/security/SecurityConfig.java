@@ -1,4 +1,3 @@
-/*
 package be.abis.sandwich.security;
 
 import org.springframework.context.annotation.Bean;
@@ -47,10 +46,10 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers(HttpMethod.PUT).permitAll()
-                                .requestMatchers(HttpMethod.PATCH).permitAll()
-                                .requestMatchers("/persons/login").permitAll()
-                                .requestMatchers("/persons/**").authenticated())
+//                                .requestMatchers(HttpMethod.POST).permitAll()
+//                                .requestMatchers(HttpMethod.PATCH).permitAll()
+                                .requestMatchers("/sandwich*/**").permitAll()
+                                .requestMatchers("/mgmt/**").authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -59,4 +58,3 @@ public class SecurityConfig {
 
 
 }
-*/

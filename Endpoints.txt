@@ -23,3 +23,84 @@ GET		| <host>:8088/sandwiches/all				| ---					| List<Sandwich>		| Everyone	| Ge
 GET		| <host>:8088/sandwich/{id}					| ---					| Sandwich				| Everyone	| Get the sandwich identied by its ID		|
 GET		| <host>:8088/sandwich?name=...				| ---					| Sandwich				| Everyone	| Get the sandwich identied by its name		|
 GET		| <host>:8088/sandwiches?category=...		| ---					| List<Sandwich>		| Everyone	| Get the sandwiches identied by its category
+
+
+TESTS
+=====
+
+- POST http://abis02:abis02@localhost:8080/api/mgmt/sandwich
+	Request Body :
+		{
+			"name": "Pinky",
+			"description": "Sla, tomaat, ei, haringfilet, tartaar",
+			"category": "Specials",
+			"basePrice": 9.41
+		}
+
+- GET http://localhost:8080/api/sandwiches/all
+	Response Body :
+		[
+			{
+				"id": 1,
+				"name": "Parmaham",
+				"description": "Verse parmaham",
+				"category": "Vlees",
+				"basePrice": 4.5,
+				"breadTypeAllowed": true,
+				"saladAllowed": true
+			},
+			{
+				"id": 2,
+				"name": "Américain préparé",
+				"description": "Américain préparé",
+				"category": "Vlees",
+				"basePrice": 3.0,
+				"breadTypeAllowed": true,
+				"saladAllowed": true
+			},
+			{
+				"id": 11,
+				"name": "Salmon",
+				"description": "Salmon salad",
+				"category": "Fish",
+				"basePrice": 7.28,
+				"breadTypeAllowed": false,
+				"saladAllowed": false
+			},
+			{
+				"id": 12,
+				"name": "Pinky",
+				"description": "Sla, tomaat, ei, haringfilet, tartaar",
+				"category": "Specials",
+				"basePrice": 9.41,
+				"breadTypeAllowed": false,
+				"saladAllowed": false
+			},
+			{
+				"id": 9,
+				"name": "Gouda",
+				"description": "Hollander Gouda",
+				"category": "Cheese",
+				"basePrice": 5.15,
+				"breadTypeAllowed": false,
+				"saladAllowed": false
+			}
+		]
+
+- PATCH http://localhost:8088/mgmt/sandwich
+        http://abis02:abis02@localhost:8088/mgmt/sandwich
+	Request Body :
+		{
+			"name": "Gouda",
+			"description": "Hollander Gouda",
+			"category": "Cheese",
+			"basePrice": 3.54
+		}
+	Response Body :
+		{
+			"timestamp": "2024-02-09T09:08:57.107+00:00",
+			"status": 500,
+			"error": "Internal Server Error",
+			"path": "/mgmt/sandwich"
+		}
+
