@@ -27,7 +27,7 @@ public class SandwichApiController {
 
     @PatchMapping(path = "/mgmt/sandwich", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @RolesAllowed("AbisAdmin")
-    public void updateSandwichPrice(Sandwich sandwich) {
+    public void updateSandwichPrice(@RequestBody Sandwich sandwich) {
         System.out.println("[API][Controller] UPDATESANDWICHPRICE [" + sandwich.toString() + "]");
         sandwichService.updatePrice(sandwich);
     }
